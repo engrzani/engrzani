@@ -1,0 +1,63 @@
+create Project
+    pip install Django
+    django-admin startproject FitnessFirstGym
+    python manage.py migrate
+    python manage.py createsuperuser
+
+collect static files 
+    python manage.py collectstatic
+
+startapp
+    python manage.py startapp dashboard
+
+fontawesome
+    pip install fontawesomefree
+
+configure urls.py for media file 
+    if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+configure urls.py for Static file 
+    if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+install pillow for images
+    python -m pip install Pillow
+
+crispy
+    CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+settings.py
+
+    from pathlib import Path
+    import os
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'FFG',
+            'USER': 'root',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
+    }
+
+
+
+    **** templates *****
+    'DIRS': [os.path.join(BASE_DIR,'templates')],
+
+    STATIC_ROOT = BASE_DIR / 'dashboard'
+    STATIC_URL =  'static/'
+
+    STATICFILES_DIRS = [
+        BASE_DIR / 'mystatic'
+    ]
+
+
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/'
+    
+
+

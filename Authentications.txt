@@ -1,0 +1,143 @@
+create superuser
+
+    >>> from django.contrib.auth.models import User
+    >>> user = User.objects.create_superuser(username='angelinvestor',
+                                 email='angelinvestor@coffeehouse.com',
+                                 password='seedfunding')
+
+
+Create regular user
+
+    >>> from django.contrib.auth.models import User
+    >>> user = User.objects.create_user(username='downtownbarista',
+                            email='downtownbarista@coffeehouse.com',
+                            password='cappuccino')
+    >>> user.is_staff
+    False
+    >>> user.is_active
+    True
+    >>> user.is_superuser
+    False
+
+
+Manage Django user through 
+
+    >>> from django.contrib.auth.models import User
+    >>> user = User.objects.get(id=1)
+    >>> user.username = 'superadmin'
+    >>> user.save()
+
+    >>> userbig.is_superuser
+    True
+
+    >>> userbig.superuser = False
+    >>> userbig.first_name = 'Big'
+    >>> userbig.last_name = 'Boss'
+    >>> userbig.save()
+
+    >>> userbig.is_superuser
+    False
+
+
+    >>> userbarista = User.objects.get(email='downtownbarista@coffeehouse.com')
+    >>> userbarista.set_password('mynewpass')
+    >>> userbarista.email ='barista@coffeehouse.com'
+    
+    >>> userbarista.check_password('oldpass')
+    False
+
+
+    >>> userbarista.check_password('mynewpass')
+    True
+
+regualr user add to group
+    from django.contrib.auth.models import User
+    from django.contrib.auth.models import Group
+    
+    user = User.objects.get(username='username')  # Replace 'username' with the actual username
+    group = Group.objects.get(name='Group Name')  # Replace 'Group Name' with the actual group name
+    user.groups.add(group)
+
+
+Django django.contrib.auth.models.User methods
+    Method	        Description
+    get_username()	Returns the username for the user. Since the User 
+                    model can be changed for another, this method is the 
+                    recommended approach instead of referencing the 
+                    username attribute directly.
+    is_anonymous()	For a User this method always returns False, it's 
+                    only used as a way to differentiate between User and 
+                    AnonymousUser.
+    is_authenticated()	For a User this method always returns True, it's 
+                    only used to to find out whether the user has gone 
+                    through the AuthenticationMiddleware (representing 
+                    the currently logged-in user).
+    get_full_name()	Returns the first_name and the last_name fields, 
+                    with a space in between.
+    get_short_name()	Returns the first_name.
+    set_password(raw_password)	Sets the user's password to the given 
+                    raw string, taking care of the password hashing.
+                    Note that when the raw_password is None, the 
+                    password is set to an unusable password, as if 
+                    set_unusable_password() were used.
+    check_password(raw_password)	Returns True if the given raw string
+                    is the correct password for the user, talking care 
+                    of the password hashing for making the comparison.
+    set_unusable_password()	Marks the user as having no password set. 
+                    Note this isn't the same as having a blank string 
+                    for a password. check_password() for this user will 
+                    never return True. This is helpful if authentication 
+                    takes place against an existing external source 
+                    (e.g.LDAP directory).
+    has_usable_password()	Returns False if set_unusable_password() has 
+                            been called for the user.
+    get_group_permissions(obj=None)	Returns a set of group permission 
+                    strings for the user. If the obj is passed, only 
+                    returns the group permissions for the specific 
+                    object.
+    get_all_permissions(obj=None)	Returns a set of group and user 
+                    permission strings for the user. If the obj is 
+                    passed, only returns the group permissions for the 
+                    specific object.
+    has_perm(perm, obj=None)	Returns True if the user has the 
+                    specified permission, where perm is in the format 
+                    <app label>.<permission codename>". Note if the user 
+                    is inactive, this method always returns False. If 
+                    the obj is passed, the check ocurrs on the specific 
+                    object and not on the model.
+    has_perms(perm_list, obj=None)	Returns True if the user has each of 
+                    the specified permissions, where each perm is in the 
+                    format <app label>.<permission codename>". Note if 
+                    the user is inactive, this method always returns 
+                    False. If the obj is passed, the check ocurrs on the 
+                    specific object and not on the model.
+    has_module_perms(package_name)	Returns True if the user has 
+                    permissions in the given package (i.e. the Django 
+                    app label). If the user is inactive, this method 
+                    always returns False.
+    email_user(subject, message, from_email=None, **kwargs)	Sends an 
+                    email to the user. If from_email is None, Django 
+                    uses the DEFAULT_FROM_EMAIL in settings.py. Also 
+                    note this method relies on Django's send_mail() 
+                    method to which it passes the **kwargs argument. 
+                    See the Django email shortcut methods for more 
+                    details on the send_mail() method and **kwargs 
+                    values
+
+
+
+validaters
+
+    AUTH_PASSWORD_VALIDATORS = [{
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        },{
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
+        },{
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
+        },{
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },]
