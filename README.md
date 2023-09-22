@@ -1,10 +1,51 @@
-- 👋 Hi, I’m @engrzani
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
+# Library-Management-System
 
-<!---
-engrzani/engrzani is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+The repository contains web pages using Django web development framework in python language. It contains
+  a) Two Forms Students and Books 
+  b) One Form to issue a book to particular student. (where multiple transaction require on one student).
+ 
+## Getting Started
+ 
+
+Open terminal using Ctrl + Alt + T. Run the following command <br>
+```ruby 
+  C
+```
+
+Create and activate virtual environment using <br>
+```ruby
+   virtualenv -p python3 venv
+```
+<br>
+
+```ruby
+    cd venv
+``` 
+<br>
+
+```ruby 
+   source bin/activate
+``` 
+<br>
+
+### Run Steps:
+```ruby 
+   cd ..
+```
+
+```ruby 
+   cd LMS
+```
+
+
+```ruby 
+   python manage.py makemigrations
+```
+
+```ruby 
+   python manage.py migrate
+``` 
+
+```ruby 
+   python manage.py runserver
+``` 
